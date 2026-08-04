@@ -253,7 +253,7 @@ while True:
     elif choice == "0":
         print("Goodbye!")
         break
-
+    
 # Anything else typed here is invalid, so I show an error instead of crashing.
     else:
         print("Invalid choice, try again.")
