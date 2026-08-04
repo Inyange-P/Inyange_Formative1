@@ -201,3 +201,60 @@ my_tracker = GradeTracker()
 
 # The my main menu loop. It keeps showing the menu and asking for a choice until the user picks 0 to exit. I use if/elif to route each choice to the right action.
 
+while True:
+    print("1 to  Add homework")
+    print("2 to  Add exam")
+    print("3 to  List assignments")
+    print("4 to  Filter assignments")
+    print("5 to  Show summary")
+    print("0 to  Exit")
+    choice = input("Enter your choice: ")
+    
+# collect all the details for a new homework assignment using my existing input functions, then create a Homework object and add it to my tracker.
+    if choice == "1":
+        print("You picked Add Homework")
+        subject = input("Enter subject: ")
+        title, max_score = GetTitle_and_Max_core()
+        score = Gotten_Score(max_score)
+        due_date = Get_The_Due_Date()
+        new_hw = Homework(subject, title, score, max_score, due_date)
+        my_tracker.add_assignment(new_hw)
+        print("Homework added!")
+        
+# same idea as homework, but creates an Exam object instead, which automatically gets type "exam".
+    elif choice == "2":
+        print("You picked Add Exam")
+        subject = input("Enter subject: ")
+        title, max_score = GetTitle_and_Max_core()
+        score = Gotten_Score(max_score)
+        due_date = Get_The_Due_Date()
+        new_exam = Exam(subject, title, score, max_score, due_date)
+        my_tracker.add_assignment(new_exam)
+        print("Exam added!")
+
+# show every assignment currently stored.
+    elif choice == "3":
+        print("You picked List")
+        my_tracker.list_assignments()
+
+# ask what to filter by and what value to match, then call my filter method.
+    elif choice == "4":
+        print("You picked Filter")
+        filter_by = input("Filter by subject, type, or month? ")
+        value = input("Enter the value to filter by: ")
+        my_tracker.filter_assignments(filter_by, value)
+
+# print the full grade summary
+    elif choice == "5":
+        print("You picked Summary")
+        my_tracker.show_summary()
+
+# exit the loop and end the program.
+    elif choice == "0":
+        print("Goodbye!")
+        break
+
+# Anything else typed here is invalid, so I show an error instead of crashing.
+    else:
+        print("Invalid choice, try again.")
+
